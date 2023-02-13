@@ -9,18 +9,18 @@ def call(Map config = [:]) {
   else {
       image_repo0="${config.sourceImageHub}/${config.sourceImageName}"
   }
-  image_repo1_new="${config.destinationImageHub}/${config.destinationImageName}"
-  tag_new = config.sourceImageName.replaceAll(".*:","")
-  image_tag_latest_new="${image_repo1_new}:latest"
+  image_repo1="${config.destinationImageHub}/${config.destinationImageName}"
+  tag = config.sourceImageName.replaceAll(".*:","")
+  image_tag_latest="${image_repo1}:latest"
   if (config.additionalTag == null) {
-    image_tag_current_new="${image_repo1_new}:${tag_new}"
+    image_tag_current="${image_repo1}:${tag}"
   }
   else {
-    image_tag_current_new="${image_repo1_new}:${tag_new}-${config.additionalTag}"
+    image_tag_current="${image_repo1}:${tag}-${config.additionalTag}"
   }
-  string_to_output="Pull-push image parameters:\n     source:      ${image_repo0}\n     destination: ${image_tag_current_new}\n"
+  string_to_output="Pull-push image parameters:\n     source:      ${image_repo0}\n     destination: ${image_tag_current}\n"
   if (config.notPushTagLatest == null) {
-    string_to_output="${string_to_output}     destination: ${image_tag_latest_new}\n"
+    string_to_output="${string_to_output}     destination: ${image_tag_latest}\n"
   }
   
   //info and debug
@@ -37,13 +37,13 @@ def call(Map config = [:]) {
   sh """
     aws ecr get-login-password --region ${config.awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
     docker pull "${image_repo0}"
-    docker tag "${image_repo0}" "${image_tag_latest_new}";
-    docker tag "${image_tag_latest_new}" "${image_tag_current_new}";
-    docker push "${image_tag_current_new}"
+    docker tag "${image_repo0}" "${image_tag_latest}";
+    docker tag "${image_tag_latest}" "${image_tag_current}";
+    docker push "${image_tag_current}"
   """
   if (config.notPushTagLatest == null) {
     sh """
-      docker push "${image_tag_latest_new}"
+      docker push "${image_tag_latest}"
     """
   }
 }
