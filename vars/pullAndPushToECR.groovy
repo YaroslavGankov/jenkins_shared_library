@@ -1,3 +1,14 @@
+//Examples of usage:
+//Example 1. Description: pull Jenkins Image and push it with tags: '2.375.2-jdk11' (don't change) and 'latest':
+//pullAndPushToECR(sourceImageName:"jenkins/jenkins:2.375.2-jdk11",destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/jenkins")
+//
+//Example 2. //Description: pull docker:dind image and push it with tag: 'dind' (don't change) and don't push with tag 'latest':
+//pullAndPushToECR(sourceImageName:"docker:dind",destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/docker",notPushTagLatest:true)
+//
+//Example 3. //Description: pull docker:dind image and push it with tag: 'dind-20220213-r1456' (additional tag) and don't push with tag 'latest':
+//pullAndPushToECR(sourceImageName:"docker:dind",destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/docker",notPushTagLatest:true,additionalTag:"20220213-r1456")
+
+
 def call(Map config = [:]) {
   //init
   if (config.awsRegion == null) {
