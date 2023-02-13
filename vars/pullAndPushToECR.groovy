@@ -1,5 +1,4 @@
 def call(String source_image_repo, String destination_image_repo_hub, String destination_image_name) {
-  // echo Hello World ${name}. It is ${dayOfWeek}."
   sh """
     echo "${source_image_repo}"
     echo "${destination_image_repo_hub}"
