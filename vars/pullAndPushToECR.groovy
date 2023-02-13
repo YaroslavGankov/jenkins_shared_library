@@ -13,11 +13,9 @@ def call(String source_image_repo, String destination_image_repo_hub, String des
     image_name="${destination_image_repo}";
     image_repo1="\${image_hub}/\${image_name}";
     tag=`echo \$image_name_to_pull | cut -d : -f 2`
-    echo \$image_repo1;
     image_tag_latest="\${image_repo1}:latest"
     image_tag_current="\${image_repo1}:\${tag}"
-    echo "image_tag_latest: \${image_tag_latest}";
-    echo "image_tag_current: \${image_tag_current}";
+    echo "=============\nDEBUG:\nimage_tag_latest: \${image_tag_latest}\nimage_tag_current: \${image_tag_current}\n"=============";
     docker pull "\${image_name_to_pull}"
     docker tag "\${image_name_to_pull}" "\${image_tag_latest}";
     docker tag "\${image_tag_latest}" "\${image_tag_current}";
