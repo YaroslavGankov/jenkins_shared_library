@@ -3,14 +3,7 @@ def call(Map config = [:]) {
   if (config.awsRegion == null) {
     config.awsRegion="eu-west-1"
   }
-  if (config.sourceImageHub == null) {
-      image_repo0="${config.sourceImageName}"
-  }
-  else {
-      image_repo0="${config.sourceImageHub}/${config.sourceImageName}"
-  }
   image_repo1="${config.destinationImageHub}/${config.destinationImageName}"
-  tag = config.sourceImageName.replaceAll(".*:","")
   image_tag_latest="${image_repo1}:latest"
   if (config.additionalTag == null) {
     image_tag_current="${image_repo1}:${tag}"
@@ -25,7 +18,6 @@ def call(Map config = [:]) {
   
   //info and debug
   echo "Input values:\n     sourceImageHub:       ${config.sourceImageHub}\n \
-    sourceImageName:      ${config.sourceImageName}\n \
     destinationImageHub:  ${config.destinationImageHub}\n \
     destinationImageName: ${config.destinationImageName}\n \
     awsRegion:            ${config.awsRegion}\n \
