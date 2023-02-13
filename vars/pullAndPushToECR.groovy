@@ -12,7 +12,8 @@ def call(Map config = [:]) {
     sourceImageName:      ${config.sourceImageName}\n \
     destinationImageHub:  ${config.destinationImageHub}\n \
     destinationImageName: ${config.destinationImageName}\n \
-    awsRegion:            ${config.awsRegion}\n'
+    awsRegion:            ${config.awsRegion}\n \
+    notPushTagLatest:     ${config.notPushTagLatest} (if null - push latest, if not null - not push latest tag to destination repo)'
     image_repo1="${config.destinationImageHub}/${config.destinationImageName}";
     tag=`echo ${config.sourceImageName} | cut -d : -f 2`
     image_tag_latest="\${image_repo1}:latest"
@@ -22,7 +23,11 @@ def call(Map config = [:]) {
     docker pull "${image_repo0}"
     docker tag "${image_repo0}" "\${image_tag_latest}";
     docker tag "\${image_tag_latest}" "\${image_tag_current}";
-    docker push "\${image_tag_latest}"
     docker push "\${image_tag_current}"
   """
+  if (${config.notPushTagLatest} == null) {
+    sh """
+      docker push "\${image_tag_latest}"
+    """
+  }
 }
