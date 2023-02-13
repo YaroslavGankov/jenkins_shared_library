@@ -3,7 +3,7 @@ def call(Map config = [:]) {
     echo '\n     sourceImageHub: ${config.sourceImageHub}\n \
     sourceImageName: ${config.sourceImageName}\n \
     destinationImageHub: ${config.destinationImageHub}\n \
-    destinationImageName: ${config.destinationImageName}\n'
+    destinationImageName: ${config.destinationImageName}\n \
     awsRegion: ${config.awsRegion}\n'
   """
   if (config.awsRegion == null) {
