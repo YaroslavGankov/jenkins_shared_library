@@ -1,9 +1,13 @@
+//Examples of usage:
+//Example 1. Description: build docker image from Dockerfile and push it to repo
+//buildAndPushToECR(destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/jenkins-agent",notPushTagLatest:"true",additionalTag:"4.11-1-jdk11",pathToDockerfile:"docker/jenkins/agents/jnlp4.11-1-jdk11")
 def call(Map config = [:]) {
   //init
   if (config.awsRegion == null) {
     config.awsRegion="eu-west-1"
   }
   image_repo1="${config.destinationImageHub}/${config.destinationImageName}"
+  tag = ${config.additionalTag}
   image_tag_latest="${image_repo1}:latest"
   if (config.additionalTag == null) {
     image_tag_current="${image_repo1}:${tag}"
