@@ -13,7 +13,7 @@ def call(Map config = [:]) {
   if (config.additionalTag == null) {
     image_tag_current_new="${image_repo1_new}:${tag_new}"
   } else {
-    image_tag_current_new="${image_repo1_new}:${tag_new}-${additionalTag}"
+    image_tag_current_new="${image_repo1_new}:${tag_new}-${config.additionalTag}"
   }
   echo "Input values:\n     sourceImageHub:       ${config.sourceImageHub}\n \
     sourceImageName:      ${config.sourceImageName}\n \
