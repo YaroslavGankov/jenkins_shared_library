@@ -8,7 +8,6 @@
 //Example 3. //Description: pull docker:dind image and push it with tag: 'dind-20220213-r1456' (additional tag) and don't push with tag 'latest':
 //pullAndPushToECR(sourceImageName:"docker:dind",destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/docker",notPushTagLatest:true,additionalTag:"20220213-r1456")
 
-
 def call(Map config = [:]) {
   //init
   if (config.awsRegion == null) {

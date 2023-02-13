@@ -3,6 +3,7 @@
 //buildAndPushToECR(destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/jenkins-agent",notPushTagLatest:"true",additionalTag:"4.11-1-jdk11",pathToDockerfile:"docker/jenkins/agents/jnlp4.11-1-jdk11")
 //buildAndPushToECR(destinationImageHub:"<aws_account_id>.dkr.ecr.<region>.amazonaws.com",destinationImageName:"devops/jenkins-agent",notPushTagLatest:"true",tag:"4.11-1-jdk11",pathToDockerfile:"docker/jenkins/agents/jnlp4.11-1-jdk11")
 //
+//Details:
 //'tag' and 'additionalTag' - are the same - tag for the image. If 'tag' is defined then 'additionalTag' well be ignored. If tag isn't defined, 'additionalTag' will become 'tag'
 
 def call(Map config = [:]) {
