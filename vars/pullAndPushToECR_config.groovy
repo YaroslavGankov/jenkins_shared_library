@@ -7,9 +7,7 @@ def call(Map config = [:]) {
     awsRegion: ${config.awsRegion}\n'
   """
   if (config.awsRegion == null) {
-    awsRegion="eu-west-1"
-  } else {
-    awsRegion=${config.awsRegion}
+    config.awsRegion="eu-west-1"
   }
 
   if (config.sourceImageHub == null) {
@@ -23,7 +21,7 @@ def call(Map config = [:]) {
     image_tag_latest="\${image_repo1}:latest"
     image_tag_current="\${image_repo1}:\${tag}"
     echo "\n     source:      ${image_repo0}\n     destination: \${image_tag_current}\n     destination: \${image_tag_latest}\n"
-    aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
+    aws ecr get-login-password --region ${config.awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
     docker pull "${image_repo0}"
     docker tag "${image_repo0}" "\${image_tag_latest}";
     docker tag "\${image_tag_latest}" "\${image_tag_current}";
