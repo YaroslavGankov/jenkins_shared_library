@@ -7,7 +7,7 @@ def call(Map config = [:]) {
     config.awsRegion="eu-west-1"
   }
   image_repo1="${config.destinationImageHub}/${config.destinationImageName}"
-  tag = ${config.additionalTag}
+  tag = "${config.additionalTag}"
   image_tag_latest="${image_repo1}:latest"
   if (config.additionalTag == null) {
     image_tag_current="${image_repo1}:${tag}"
