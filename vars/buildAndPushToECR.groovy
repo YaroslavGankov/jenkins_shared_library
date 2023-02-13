@@ -1,4 +1,4 @@
-def call(Map config = [:]) {
+def call1(Map config = [:]) {
   //init
   if (config.awsRegion == null) {
     config.awsRegion="eu-west-1"
