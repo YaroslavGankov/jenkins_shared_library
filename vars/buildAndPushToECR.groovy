@@ -27,16 +27,16 @@ def call1(Map config = [:]) {
   echo "${string_to_output}"
   
   //pull-push
-  sh """
-    cd ${config.pathToDockerfile}
-    docker build -t ${image_tag_latest} .
-    docker tag "${image_tag_latest}" "${image_tag_current}";
-    aws ecr get-login-password --region ${config.awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
-    docker push "${image_tag_current}"
-  """
-  if (config.notPushTagLatest == null) {
-    sh """
-      docker push "${image_tag_latest}"
-    """
-  }
+  // sh """
+  //   cd ${config.pathToDockerfile}
+  //   docker build -t ${image_tag_latest} .
+  //   docker tag "${image_tag_latest}" "${image_tag_current}";
+  //   aws ecr get-login-password --region ${config.awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
+  //   docker push "${image_tag_current}"
+  // """
+  // if (config.notPushTagLatest == null) {
+  //   sh """
+  //     docker push "${image_tag_latest}"
+  //   """
+  // }
 }
