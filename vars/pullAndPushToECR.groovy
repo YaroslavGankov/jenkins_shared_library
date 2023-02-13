@@ -39,9 +39,9 @@ def call(Map config = [:]) {
     sourceImageName:      ${config.sourceImageName}\n \
     destinationImageHub:  ${config.destinationImageHub}\n \
     destinationImageName: ${config.destinationImageName}\n \
+    additionalTag:        ${config.additionalTag}"
     awsRegion:            ${config.awsRegion}\n \
     notPushTagLatest:     ${config.notPushTagLatest} (if null - push latest, if not null - not push latest tag to destination repo)\n \
-    additionalTag:        ${config.additionalTag}"
   echo "${string_to_output}"
   
   //pull-push
