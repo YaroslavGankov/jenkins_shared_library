@@ -8,9 +8,9 @@ def call(Map config = [:]) {
       image_repo0="${config.sourceImageHub}/${config.sourceImageName}"
   }
   sh """
-    echo '\n     sourceImageHub: ${config.sourceImageHub}\n \
-    sourceImageName: ${config.sourceImageName}\n \
-    destinationImageHub: ${config.destinationImageHub}\n \
+    echo '\n     sourceImageHub:       ${config.sourceImageHub}\n \
+    sourceImageName:      ${config.sourceImageName}\n \
+    destinationImageHub:  ${config.destinationImageHub}\n \
     destinationImageName: ${config.destinationImageName}\n \
     awsRegion: ${config.awsRegion}\n'
     image_repo1="${config.destinationImageHub}/${config.destinationImageName}";
