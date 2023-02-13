@@ -9,7 +9,7 @@ def call(String source_image_repo, String destination_image_repo_hub, String des
     aws sts get-caller-identity
     aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin ${destination_image_repo_hub}
     image_repo1="\${destination_image_repo_hub}/\${destination_image_name}";
-    tag=`echo \$source_image_repo | cut -d : -f 2`
+    tag=`echo \${source_image_repo} | cut -d : -f 2`
     image_tag_latest="\${image_repo1}:latest"
     image_tag_current="\${image_repo1}:\${tag}"
     echo "=============\nDEBUG:\nimage_tag_latest: \${image_tag_latest}\nimage_tag_current: \${image_tag_current}\n=============";
