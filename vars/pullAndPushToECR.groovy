@@ -25,7 +25,7 @@ def call(Map config = [:]) {
     docker tag "\${image_tag_latest}" "\${image_tag_current}";
     docker push "\${image_tag_current}"
   """
-  if (${config.notPushTagLatest} == null) {
+  if (config.notPushTagLatest == null) {
     sh """
       docker push "\${image_tag_latest}"
     """
