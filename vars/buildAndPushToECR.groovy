@@ -29,7 +29,8 @@ def call(Map config = [:]) {
     additionalTag:        ${config.additionalTag}\n \
     pathToDockerfile:     ${config.pathToDockerfile}"
   echo "${string_to_output}"
-  
+  sh "pwd"
+  sh "ls -la"
   //pull-push
   sh """
     cd ${config.pathToDockerfile}
