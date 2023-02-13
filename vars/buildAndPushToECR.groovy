@@ -11,7 +11,7 @@ def call1(Map config = [:]) {
   else {
     image_tag_current="${image_repo1}:${tag}-${config.additionalTag}"
   }
-  string_to_output="Pull-push image parameters:\n     source:      ${image_repo0}\n     destination: ${image_tag_current}\n"
+  string_to_output="Pull-push image parameters:\n     destination: ${image_tag_current}\n"
   if (config.notPushTagLatest == null) {
     string_to_output="${string_to_output}     destination: ${image_tag_latest}\n"
   }
@@ -28,8 +28,8 @@ def call1(Map config = [:]) {
   
   //pull-push
   sh """
+    cd ${config.pathToDockerfile}
     docker build -t ${image_tag_latest} .
-    docker tag "${image_repo0}" "${image_tag_latest}";
     docker tag "${image_tag_latest}" "${image_tag_current}";
     aws ecr get-login-password --region ${config.awsRegion} | docker login --username AWS --password-stdin ${config.destinationImageHub}
     docker push "${image_tag_current}"
