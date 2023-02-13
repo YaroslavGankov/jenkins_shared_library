@@ -28,7 +28,6 @@ def call1(Map config = [:]) {
   
   //pull-push
   sh """
-    cd ${config.pathToDockerfile}
     docker build -t ${image_tag_latest} .
     docker tag "${image_repo0}" "${image_tag_latest}";
     docker tag "${image_tag_latest}" "${image_tag_current}";
