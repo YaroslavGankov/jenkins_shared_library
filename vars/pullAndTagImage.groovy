@@ -1,4 +1,8 @@
 // // pull image from private repo and tag it as image name is
+// Map parameters:
+// 'dockerhub_private' - ECR private repo to login
+// 'image' - image in the repo without repo-prefix. Example: 'docker:dind'
+//
 // // example of usage with variables from params:
 // pullAndTagImage(dockerhub_private:params.ecr_repo,image:params.image_to_pull)
 def call(Map config = [:]) {
